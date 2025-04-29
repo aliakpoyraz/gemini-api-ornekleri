@@ -65,7 +65,8 @@ cd  gemini-api-ornegi
 
 # 3. Gerekli kurulumları yapın
 npm  install
-proje dosyasi içerisinde bulunan script.js ve server.js dosyasi icerisindeki API_KEY bölümlerini kendi API_KEY'iniz ile doldurun, aksi halde program düzgün bir şekilde çalışmayacaktır.
+proje dosyasi içerisinde bulunan script.js ve server.js dosyasi icerisindeki API_KEY bölümlerini kendi
+API_KEY'iniz ile doldurun, aksi halde program düzgün bir şekilde çalışmayacaktır.
 
 # 4. Sunucuyu başlatın
 node  server.js
