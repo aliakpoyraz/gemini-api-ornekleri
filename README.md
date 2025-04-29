@@ -57,7 +57,7 @@ Bu proje Ostim Teknik Üniversitesi Ostimtech GDG tarafından düzenlenen **Hack
 ```bash
 # 1. Projeyi klonlayın
 
-git  clone  https://github.com/yourusername/gemini-api-ornegi.git
+git  clone  https://github.com/aliakpoyraz/gemini-api-ornekleri.git
 
 # 2. Proje klasörüne geçin
 
