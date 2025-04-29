@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackGDG'25</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">HackGDG'25</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="cv">CV Oluşturucu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="text">Metin Oluşturucu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="title">Başlık Oluşturucu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="readme">README Oluşturucu</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- CV Oluşturucu Sayfası -->
+        <div id="cvPage" class="page active">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">CV Oluşturucu</h5>
+                    <button type="button" class="btn btn-outline-primary" id="autoFillCVBtn">
+                        <i class="bi bi-magic"></i> Otomatik Doldur
+                    </button>
+                </div>
+                <div class="card-body">
+                    <form id="cvForm">
+                        <!-- Kişisel Bilgiler -->
+                        <div class="form-section mb-4">
+                            <h3>Kişisel Bilgiler</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">Ad</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">Soyad</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">E-posta</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">Telefon</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Adres</label>
+                                <input type="text" class="form-control" id="address" required>
+                            </div>
+                        </div>
+
+                        <!-- Eğitim Bilgileri -->
+                        <div class="form-section mb-4">
+                            <h3>Eğitim Bilgileri</h3>
+                            <div id="educationFields">
+                                <div class="education-entry mb-3">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="school" class="form-label">Okul</label>
+                                            <input type="text" class="form-control" name="school" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="degree" class="form-label">Bölüm/Derece</label>
+                                            <input type="text" class="form-control" name="degree" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="startDate" class="form-label">Başlangıç Tarihi</label>
+                                            <input type="date" class="form-control" name="startDate" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="endDate" class="form-label">Bitiş Tarihi</label>
+                                            <input type="date" class="form-control" name="endDate">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary" onclick="addEducationField()">Eğitim Ekle</button>
+                        </div>
+
+                        <!-- İş Deneyimi -->
+                        <div class="form-section mb-4">
+                            <h3>İş Deneyimi</h3>
+                            <div id="experienceFields">
+                                <div class="experience-entry mb-3">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="company" class="form-label">Şirket</label>
+                                            <input type="text" class="form-control" name="company" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="position" class="form-label">Pozisyon</label>
+                                            <input type="text" class="form-control" name="position" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="startDate" class="form-label">Başlangıç Tarihi</label>
+                                            <input type="date" class="form-control" name="startDate" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="endDate" class="form-label">Bitiş Tarihi</label>
+                                            <input type="date" class="form-control" name="endDate">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Açıklama</label>
+                                        <textarea class="form-control" name="description" rows="3" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary" onclick="addExperienceField()">Deneyim Ekle</button>
+                        </div>
+
+                        <!-- Yetenekler -->
+                        <div class="form-section mb-4">
+                            <h3>Yetenekler</h3>
+                            <div class="mb-3">
+                                <label for="skills" class="form-label">Yetenekler (virgülle ayırarak yazın)</label>
+                                <input type="text" class="form-control" id="skills" placeholder="Örn: JavaScript, HTML, CSS" required>
+                            </div>
+                        </div>
+
+                        <!-- Sertifikalar -->
+                        <div class="form-section mb-4">
+                            <h3>Sertifikalar</h3>
+                            <div id="certificateFields">
+                                <div class="certificate-entry mb-3">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="certificateName" class="form-label">Sertifika Adı</label>
+                                            <input type="text" class="form-control" name="certificateName" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="issuingOrganization" class="form-label">Veren Kuruluş</label>
+                                            <input type="text" class="form-control" name="issuingOrganization" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="issueDate" class="form-label">Veriliş Tarihi</label>
+                                            <input type="date" class="form-control" name="issueDate" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="expiryDate" class="form-label">Geçerlilik Tarihi</label>
+                                            <input type="date" class="form-control" name="expiryDate">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="certificateUrl" class="form-label">Sertifika URL (varsa)</label>
+                                        <input type="url" class="form-control" name="certificateUrl">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary" onclick="addCertificateField()">Sertifika Ekle</button>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-generate">CV Oluştur</button>
+                    </form>
+
+                    <div class="mt-4">
+                        <div class="loading d-none">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                            <div class="progress mt-3">
+                                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <p class="status-message mt-3">İçerik oluşturuluyor...</p>
+                        </div>
+                        <div id="cvOutput" class="d-none">
+                            <!-- CV çıktısı buraya gelecek -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metin Oluşturucu Sayfası -->
+        <div id="textPage" class="page d-none">
+            <h2 class="mb-4">Metin Oluşturucu</h2>
+            <form id="textForm">
+                <div class="mb-3">
+                    <label for="keywords" class="form-label">Anahtar Kelimeler</label>
+                    <input type="text" class="form-control" id="keywords" placeholder="Virgülle ayırarak anahtar kelimeleri girin">
+                </div>
+                <div class="mb-3">
+                    <label for="textLength" class="form-label">Metin Uzunluğu</label>
+                    <select class="form-select" id="textLength">
+                        <option value="short">Kısa (1 paragraf)</option>
+                        <option value="medium">Orta (2-3 paragraf)</option>
+                        <option value="long">Uzun (4-5 paragraf)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Metin Oluştur</button>
+            </form>
+            <div class="mt-4">
+                <div class="loading d-none">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Yükleniyor...</span>
+                    </div>
+                    <div class="progress mt-3">
+                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                    </div>
+                    <p class="status-message mt-3">İçerik oluşturuluyor...</p>
+                </div>
+                <div id="textOutput" class="d-none">
+                    <h3 class="mb-3">Oluşturulan Metin</h3>
+                    <div class="text-preview p-4 bg-light rounded">
+                        <!-- Metin buraya gelecek -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Başlık Oluşturucu Sayfası -->
+        <div id="titlePage" class="page d-none">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0">Başlık Oluşturucu</h2>
+                    <button id="autoFillTitleBtn" class="btn btn-outline-primary">
+                        <i class="bi bi-magic"></i> Otomatik Doldur
+                    </button>
+                </div>
+                <div class="card-body">
+                    <form id="titleForm">
+                        <div class="mb-3">
+                            <label for="content" class="form-label">İçerik</label>
+                            <textarea class="form-control" id="content" rows="5" placeholder="Başlık oluşturmak istediğiniz içeriği buraya yazın..." required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="titleStyle" class="form-label">Başlık Stili</label>
+                            <select class="form-select" id="titleStyle">
+                                <option value="formal">Resmi</option>
+                                <option value="casual">Günlük</option>
+                                <option value="creative">Yaratıcı</option>
+                                <option value="clickbait">Tıklama Çekici</option>
+                                <option value="question">Soru Formatında</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="titleCount" class="form-label">Kaç Başlık İstiyorsunuz?</label>
+                            <select class="form-select" id="titleCount">
+                                <option value="1">1 Başlık</option>
+                                <option value="3">3 Başlık</option>
+                                <option value="5">5 Başlık</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Başlık Oluştur</button>
+                    </form>
+
+                    <div class="mt-4">
+                        <div class="loading d-none">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                            <div class="progress mt-3">
+                                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <p class="status-message mt-3">İçerik oluşturuluyor...</p>
+                        </div>
+                        <div id="titleOutput" class="d-none">
+                            <h3 class="mb-3">Oluşturulan Başlıklar</h3>
+                            <div class="title-preview p-4 bg-light rounded">
+                                <!-- Başlıklar buraya gelecek -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- README Oluşturucu Sayfası -->
+        <div id="readmePage" class="page d-none">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="mb-0">GitHub README Oluşturucu</h2>
+                    <button id="autoFillReadmeBtn" class="btn btn-outline-primary">
+                        <i class="bi bi-magic"></i> Otomatik Doldur
+                    </button>
+                </div>
+                <div class="card-body">
+                    <form id="readmeForm">
+                        <div class="form-section mb-4">
+                            <h3>Proje Bilgileri</h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="projectName" class="form-label">Proje Adı</label>
+                                    <input type="text" class="form-control" id="projectName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="projectType" class="form-label">Proje Türü</label>
+                                    <select class="form-select" id="projectType" required>
+                                        <option value="web">Web Uygulaması</option>
+                                        <option value="mobile">Mobil Uygulama</option>
+                                        <option value="desktop">Masaüstü Uygulaması</option>
+                                        <option value="library">Kütüphane/Paket</option>
+                                        <option value="api">API</option>
+                                        <option value="cli">CLI Aracı</option>
+                                        <option value="other">Diğer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="projectDescription" class="form-label">Proje Açıklaması</label>
+                                <textarea class="form-control" id="projectDescription" rows="3" required 
+                                    placeholder="Projenizi kısaca açıklayın..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="readmeLanguage" class="form-label">README Dili</label>
+                                <select class="form-select" id="readmeLanguage" required>
+                                    <option value="tr">Türkçe</option>
+                                    <option value="en">İngilizce</option>
+                                    <option value="both">Türkçe + İngilizce</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-section mb-4">
+                            <h3>Teknik Detaylar</h3>
+                            <div class="mb-3">
+                                <label for="techStack" class="form-label">Kullanılan Teknolojiler</label>
+                                <input type="text" class="form-control" id="techStack" 
+                                    placeholder="JavaScript, React, Node.js, MongoDB" required>
+                                <div class="form-text">Teknolojileri virgülle ayırarak yazın</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="features" class="form-label">Öne Çıkan Özellikler</label>
+                                <textarea class="form-control" id="features" rows="3" 
+                                    placeholder="Her satıra bir özellik yazın..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section mb-4">
+                            <h3>Kurulum ve Kullanım</h3>
+                            <div class="mb-3">
+                                <label for="installation" class="form-label">Kurulum Adımları</label>
+                                <textarea class="form-control" id="installation" rows="3" 
+                                    placeholder="Kurulum adımlarını yazın..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="usage" class="form-label">Kullanım Örnekleri</label>
+                                <textarea class="form-control" id="usage" rows="3" 
+                                    placeholder="Kullanım örneklerini yazın..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section mb-4">
+                            <h3>Ek Bilgiler</h3>
+                            <div class="mb-3">
+                                <label for="contributing" class="form-label">Katkıda Bulunma</label>
+                                <textarea class="form-control" id="contributing" rows="2" 
+                                    placeholder="Katkıda bulunmak isteyenler için yönergeler..."></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="license" class="form-label">Lisans</label>
+                                <select class="form-select" id="license">
+                                    <option value="MIT">MIT</option>
+                                    <option value="Apache">Apache 2.0</option>
+                                    <option value="GPL">GPL v3</option>
+                                    <option value="BSD">BSD 3-Clause</option>
+                                    <option value="custom">Özel Lisans</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="badges" class="form-label">Rozetler (Badges)</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="versionBadge" checked>
+                                    <label class="form-check-label" for="versionBadge">Versiyon Rozeti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="licenseBadge" checked>
+                                    <label class="form-check-label" for="licenseBadge">Lisans Rozeti</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="starsBadge" checked>
+                                    <label class="form-check-label" for="starsBadge">Yıldız Rozeti</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-generate">README Oluştur</button>
+                    </form>
+
+                    <div class="mt-4">
+                        <div class="loading d-none">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Yükleniyor...</span>
+                            </div>
+                            <div class="progress mt-3">
+                                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <p class="status-message mt-3">README oluşturuluyor...</p>
+                        </div>
+                        <div id="readmeOutput" class="d-none">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3>Oluşturulan README</h3>
+                                <div>
+                                    <button class="btn btn-outline-primary me-2" onclick="copyReadme()">
+                                        <i class="bi bi-clipboard"></i> Kopyala
+                                    </button>
+                                    <button class="btn btn-outline-success" onclick="downloadReadme()">
+                                        <i class="bi bi-download"></i> İndir
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="readme-preview p-4 bg-light rounded">
+                                <!-- README içeriği buraya gelecek -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
