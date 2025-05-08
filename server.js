@@ -68,10 +68,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// CV generator sayfası için route
-app.get('/cv-generator', (req, res) => {
-    res.sendFile(path.join(__dirname, 'cv-generator.html'));
-});
 app.use((err, req, res, next) => {
     console.error('Unhandled Error:', err);  
     res.status(500).json({ 
